@@ -1,0 +1,35 @@
+<div id="introModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+  <div class="modal-content slide-down">
+    <button id="introCloseBtn" class="modal-close" aria-label="Close">×</button>
+    
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+      <img src="/images/photo1765199616.jpg" alt="JavaScript Logo" width="80" height="80" class="bounce">
+    </div>
+    
+    <h2 id="introTitle" data-i18n="modal.title" style="text-align: center; color: var(--accent);">
+      مرحباً بك في VibeJS!
+    </h2>
+    
+    <p data-i18n="modal.subtitle" style="text-align: center; font-size: 1.125rem; margin-bottom: 1.5rem;">
+      منصة تعلم JavaScript التفاعلية
+    </p>
+    
+    <div data-i18n="modal.description" style="line-height: 1.8; margin-bottom: 1.5rem;">
+      <p>VibeJS هي منصة تعليمية مصممة خصيصاً لطلاب المدارس والمتسابقين لتعلم لغة البرمجة JavaScript بطريقة تفاعلية وممتعة.</p>
+      <p style="margin-top: 1rem;">استكشف الدروس، جرب الأمثلة في المختبر التفاعلي، واختبر مهاراتك في التحديات!</p>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="/pages/intro.html" class="btn btn-primary" data-i18n="modal.readMore">
+        اقرأ المزيد
+      </a>
+      <button onclick="window.VibeJS.closeIntroModal()" class="btn btn-secondary" data-i18n="modal.getStarted">
+        ابدأ الآن
+      </button>
+    </div>
+    
+    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.875rem; color: var(--text-secondary);" data-i18n="modal.note">
+      ملاحظة: هذه الرسالة تظهر مرة واحدة فقط عند زيارتك الأولى
+    </p>
+  </div>
+</div>

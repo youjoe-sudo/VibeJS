@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - الصفحة غير موجودة</title>
+    <link rel="icon" type="image/jpeg" href="/images/JS-ico.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="/images/JS-ico.jpg">
+    <link rel="apple-touch-icon" href="/images/JS-ico.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================================== */
+        /* 1. المتغيرات والأساسيات (Variables & Base) */
+        /* ========================================================== */
+        :root {
+            --bg1: #050a1a;
+            --bg2: #0a1128;
+            --accent1: #ff5733; /* Strong Orange/Red */
+            --accent2: #4cc9f0; /* Vibrant Cyan/Blue */
+            --text: #e6f7ff;
+            --muted: #a0c2d6;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-deep: 0 25px 50px rgba(0, 0, 0, 0.8);
+            
+            font-family: 'Cairo', sans-serif;
+            overflow: hidden; /* لمنع ظهور شريط التمرير الناتج عن النجوم */
+        }
+        
+        * { box-sizing: border-box; }
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(135deg, var(--bg1), var(--bg2));
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ========================================================== */
+        /* 2. تصميم النجوم والخلفية التفاعلية */
+        /* ========================================================== */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .star {
+            position: absolute;
+            background: var(--text);
+            border-radius: 50%;
+            animation: moveStar 15s linear infinite;
+        }
+        @keyframes moveStar {
+            from { transform: translateY(0) rotate(0); opacity: 1; }
+            to { transform: translateY(200vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ========================================================== */
+        /* 3. حاوية المحتوى الرئيسي 404 */
+        /* ========================================================== */
+        .error-container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            padding: 40px;
+            border-radius: 20px;
+            background: var(--glass);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow-deep);
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* الرقم 404 الكبير والمنفصل */
+        .error-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 15vw; /* حجم استجابي */
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+            line-height: 1;
+            /* تأثير الجليتش والنيون */
+            color: var(--accent2);
+            text-shadow: 
+                0 0 10px rgba(76,201,240,0.8),
+                0 0 20px rgba(76,201,240,0.6);
+            animation: glitch 1.5s infinite alternate;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); text-shadow: 0 0 10px var(--accent2); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); text-shadow: 0 0 15px var(--accent1); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(2px, -2px); text-shadow: 0 0 20px var(--accent2); }
+            100% { transform: translate(0); }
+        }
+
+        /* رسائل النص */
+        .error-message {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent1);
+            margin-top: 10px;
+            letter-spacing: 2px;
+            animation: pulseText 3s infinite;
+        }
+
+        .error-description {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin-top: 15px;
+            max-width: 500px;
+        }
+
+        @keyframes pulseText {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* زر العودة */
+        .home-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--bg1);
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            box-shadow: 0 10px 30px rgba(255, 87, 51, 0.4);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .home-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(76, 201, 240, 0.6);
+        }
+        
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .error-container { padding: 30px; }
+            .error-number { font-size: 25vw; }
+            .error-message { font-size: 1.8rem; }
+            .error-description { font-size: 1rem; }
+            .home-button { padding: 12px 25px; font-size: 1rem; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="starContainer"></div>
+
+    <div class="error-container">
+        <h2 class="error-number">404</h2>
+        <p class="error-message">خطأ في المسار، لا يوجد اتصال!</p>
+        <p class="error-description">
+            عفواً، لم نتمكن من العثور على الصفحة التي تبحث عنها. ربما تم تغيير العنوان أو أن الرابط غير صحيح.
+        </p>
+        <a href="/" class="home-button">العودة إلى الصفحة الرئيسية</a>
+    </div>
+
+    <script>
+        // ==========================================================
+        // JavaScript: تأثير النجوم المتحركة
+        // ==========================================================
+        const starContainer = document.getElementById('starContainer');
+        const numStars = 100; // عدد النجوم التي سيتم إنشاؤها
+        
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // تحديد الحجم والموقع والسرعة العشوائية
+            const size = Math.random() * 3 + 1; // 1px to 4px
+            const duration = Math.random() * 20 + 10; // 10s to 30s
+            
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * -20}vh`; // تبدأ من خارج الشاشة
+            star.style.animationDuration = `${duration}s`;
+            star.style.opacity = Math.random() * 0.8 + 0.2;
+
+            starContainer.appendChild(star);
+
+            // إزالة النجمة بعد انتهاء الأنيميشن لتجنب تراكم العناصر
+            star.addEventListener('animationend', () => {
+                star.remove();
+                // إعادة إنشاء نجمة جديدة في مكانها
+                createStar();
+            });
+        }
+
+        // إنشاء النجوم الأولية
+        for (let i = 0; i < numStars; i++) {
+            // تأخير بسيط لبدء الأنيميشن بشكل متفرق
+            setTimeout(createStar, Math.random() * 5000); 
+        }
+        
+        // ==========================================================
+        // JavaScript: تأثير الحركة للرقم 404 (Tilt Effect)
+        // ==========================================================
+        const errorContainer = document.querySelector('.error-container');
+
+        document.addEventListener('mousemove', (e) => {
+            const containerRect = errorContainer.getBoundingClientRect();
+            
+            // حساب مركز الحاوية
+            const centerX = containerRect.left + containerRect.width / 2;
+            const centerY = containerRect.top + containerRect.height / 2;
+            
+            // حساب المسافة بين مؤشر الماوس والمركز
+            const moveX = (e.clientX - centerX) / 50; // تقسيم على 50 للتحكم في حساسية الحركة
+            const moveY = (e.clientY - centerY) / 50;
+
+            // تطبيق دوران ثلاثي الأبعاد بسيط
+            errorContainer.style.transform = `
+                perspective(1000px) 
+                rotateX(${-moveY}deg) 
+                rotateY(${moveX}deg)
+            `;
+        });
+        
+        // إزالة الحركة عند مغادرة الماوس للحاوية
+        errorContainer.addEventListener('mouseleave', () => {
+            errorContainer.style.transform = `
+                perspective(1000px) 
+                rotateX(0deg) 
+                rotateY(0deg)
+            `;
+        });
+    </script>
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/693fc182a98748197f472255/1jcggnphq';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

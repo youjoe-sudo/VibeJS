@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VibeJS - Interactive JavaScript learning platform for students">
+  <meta name="keywords" content="JavaScript, learning, programming, education, tutorial">
+  <title>VibeJS - Learn JavaScript Interactively</title>
+  <link rel="icon" type="image/jpeg" href="/images/JS-ico.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="/images/JS-ico.jpg">
+  <link rel="apple-touch-icon" href="/images/JS-ico.jpg">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/animate.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <div id="nav-placeholder"></div>
+
+  <!-- Welcome Modal Placeholder -->
+  <div id="welcome-modal-placeholder"></div>
+
+  <!-- Intro Modal (Legacy - can be removed if not needed) -->
+  <div id="introModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+    <div class="modal-content slide-down">
+      <button id="introCloseBtn" class="modal-close" aria-label="Close">×</button>
+      
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <img src="/images/photo1765199659.jpg" alt="JavaScript Logo" width="80" height="80" class="bounce">
+      </div>
+      
+      <h2 id="introTitle" data-i18n="modal.title" style="text-align: center; color: var(--accent);">
+        Welcome to VibeJS!
+      </h2>
+      
+      <p data-i18n="modal.subtitle" style="text-align: center; font-size: 1.125rem; margin-bottom: 1.5rem;">
+        Interactive JavaScript Learning Platform
+      </p>
+      
+      <div style="line-height: 1.8; margin-bottom: 1.5rem;">
+        <p data-i18n="modal.description">VibeJS is an educational platform designed specifically for school students and competitors to learn JavaScript programming in an interactive and fun way.</p>
+      </div>
+      
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/pages/intro.html" class="btn btn-primary" data-i18n="modal.readMore">
+          Read More
+        </a>
+        <button onclick="window.VibeJS.closeIntroModal()" class="btn btn-secondary" data-i18n="modal.getStarted">
+          Get Started
+        </button>
+      </div>
+      
+      <p style="text-align: center; margin-top: 1.5rem; font-size: 0.875rem; color: var(--text-secondary);" data-i18n="modal.note">
+        Note: This message appears only once on your first visit
+      </p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+      <h1 data-i18n="hero.title">Learn JavaScript Interactively</h1>
+      <p data-i18n="hero.subtitle">Comprehensive learning platform for students and competitors</p>
+      <a href="/pages/lessons.html" class="btn btn-primary" data-i18n="hero.cta">Start Learning Now</a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+      <h2 class="text-center" data-i18n="features.title">Why VibeJS?</h2>
+      <div class="grid grid-4 mt-2">
+        <div class="card fade-in-up delay-1">
+          <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">⚡</div>
+          <h3 class="card-title" data-i18n="features.interactive.title">Interactive Learning</h3>
+          <p class="card-text" data-i18n="features.interactive.description">Try code directly in the browser with our safe interactive playground</p>
+        </div>
+
+        <div class="card fade-in-up delay-2">
+          <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">📚</div>
+          <h3 class="card-title" data-i18n="features.comprehensive.title">Comprehensive Content</h3>
+          <p class="card-text" data-i18n="features.comprehensive.description">From basics to advanced topics, everything you need in one place</p>
+        </div>
+
+        <div class="card fade-in-up delay-3">
+          <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">🏆</div>
+          <h3 class="card-title" data-i18n="features.challenges.title">Fun Challenges</h3>
+          <p class="card-text" data-i18n="features.challenges.description">Test your skills with diverse challenges and track your progress</p>
+        </div>
+
+        <div class="card fade-in-up delay-4">
+          <div style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">🌍</div>
+          <h3 class="card-title" data-i18n="features.bilingual.title">Bilingual</h3>
+          <p class="card-text" data-i18n="features.bilingual.description">Learn in Arabic or English according to your preference</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="section">
+      <h2 class="text-center">Quick Start</h2>
+      <div class="grid grid-3 mt-2">
+        <a href="/pages/lessons.html" class="card" style="text-decoration: none; color: inherit;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">📖</div>
+          <h3 class="card-title">Start with Lessons</h3>
+          <p class="card-text">Begin your journey with structured lessons from basics to advanced</p>
+        </a>
+
+        <a href="/pages/experiments.html" class="card" style="text-decoration: none; color: inherit;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧪</div>
+          <h3 class="card-title">Try the Playground</h3>
+          <p class="card-text">Experiment with JavaScript code in our safe interactive environment</p>
+        </a>
+
+        <a href="/pages/challenges.html" class="card" style="text-decoration: none; color: inherit;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎯</div>
+          <h3 class="card-title">Take Challenges</h3>
+          <p class="card-text">Test your knowledge with quizzes and coding challenges</p>
+        </a>
+      </div>
+    </section>
+  </main>
+<section class="revision-ict container fade-in mt-4 mb-4 p-4 border-radius inline-block" style="background-color: cornflowerblue; border-radius: 40px; color: white; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 15px 25px;">
+  <h2 data-i18n="revision.intro">ICT Curriculum Review </h2>
+  <p data-i18n="revision.text">Reviewing the programming and AI curriculum for the first secondary grade ❤️</p>
+  <a href="/pages/ICT.html" style="color: aqua;" data-i18n="revision.link">Click here</a>
+</section>
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="/js/core.js"></script>
+  <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/693fc182a98748197f472255/1jcggnphq';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>

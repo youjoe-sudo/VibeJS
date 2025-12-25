@@ -1,0 +1,78 @@
+{
+  "nav": {
+    "brand": "VibeJS",
+    "home": "Home",
+    "lessons": "Lessons",
+    "experiments": "Playground",
+    "challenges": "Challenges",
+    "examples": "Examples",
+    "resources": "Resources",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "credits": "Credits"
+  },
+  "modal": {
+    "title": "Welcome to VibeJS!",
+    "subtitle": "Interactive JavaScript Learning Platform",
+    "description": "VibeJS is an educational platform designed specifically for school students and competitors to learn JavaScript programming in an interactive and fun way.",
+    "readMore": "Read More",
+    "getStarted": "Get Started",
+    "note": "Note: This message appears only once on your first visit"
+  },
+  "hero": {
+    "title": "Learn JavaScript Interactively",
+    "subtitle": "Comprehensive learning platform for students and competitors",
+    "cta": "Start Learning Now"
+  },
+  "features": {
+    "title": "Why VibeJS?",
+    "interactive": {
+      "title": "Interactive Learning",
+      "description": "Try code directly in the browser with our safe interactive playground"
+    },
+    "comprehensive": {
+      "title": "Comprehensive Content",
+      "description": "From basics to advanced topics, everything you need in one place"
+    },
+    "challenges": {
+      "title": "Fun Challenges",
+      "description": "Test your skills with diverse challenges and track your progress"
+    },
+    "bilingual": {
+      "title": "Bilingual",
+      "description": "Learn in Arabic or English according to your preference"
+    }
+  },
+  "footer": {
+    "school": "Banayos Joint Secondary School - Sharkia Governorate, West Zagazig Educational Administration",
+    "copyright": "© 2024 VibeJS. All rights reserved.",
+    "powered": "Powered by JavaScript",
+    "intro": "Introduction",
+    "school": "Banayous Secondary School"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're here to help! Send us your message and we'll get back to you soon.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "success": "Your message has been sent successfully! We'll contact you soon.",
+    "error": "An error occurred while sending the message. Please try again."
+  },
+  "experiments": {
+    "title": "Interactive Playground",
+    "subtitle": "Try JavaScript code directly in the browser",
+    "run": "Run",
+    "clear": "Clear",
+    "reset": "Reset",
+    "code": "Code",
+    "output": "Output"
+  },
+  "revision": {
+    "intro": "ICT Curriculum Review",
+    "text": "Reviewing the programming and AI curriculum for the first secondary grade ❤️",
+    "link": "Click here"
+  } 
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examples - VibeJS</title>
+  <link rel="icon" type="image/jpeg" href="/images/JS-ico.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="/images/JS-ico.jpg">
+  <link rel="apple-touch-icon" href="/images/JS-ico.jpg">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/animate.css">
+  <style>
+    .code-block {
+      background: linear-gradient(135deg, var(--code-bg) 0%, var(--bg-secondary) 100%);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      border: 1px solid var(--card-border);
+      font-family: 'Courier New', monospace;
+      font-size: var(--font-size-sm);
+      line-height: 1.6;
+      position: relative;
+      transition: all var(--transition-base);
+    }
+
+    .code-block:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .code-block code {
+      color: var(--text);
+    }
+
+    .card {
+      transition: all var(--transition-base);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- Welcome Modal Placeholder -->
+  <div id="welcome-modal-placeholder"></div>
+
+  <main class="container">
+    <section class="section">
+      <div class="hero">
+        <h1 data-i18n="nav.examples">Examples</h1>
+        <p>مكتبة الأمثلة / Code Examples Library</p>
+      </div>
+
+      <div class="card mt-2 fade-in-up">
+        <h2>📝 أمثلة عملية / Practical Examples</h2>
+        <p class="text-muted">تصفح مجموعة من الأمثلة العملية لمساعدتك على فهم JavaScript بشكل أفضل</p>
+        <p class="text-muted">Browse a collection of practical examples to help you understand JavaScript better</p>
+      </div>
+
+      <!-- Basic Examples -->
+      <div class="card mt-2 fade-in-up">
+        <h3>🌱 أمثلة أساسية / Basic Examples</h3>
+        <div class="grid grid-2 mt-1">
+          <div class="card fade-in-up">
+            <h4>1. Hello World</h4>
+            <pre class="code-block"><code>console.log("Hello, World!");
+console.log("مرحباً بالعالم!");</code></pre>
+            <p class="text-muted">الطباعة الأساسية / Basic printing</p>
+          </div>
+
+          <div class="card">
+            <h4>2. Variables</h4>
+            <pre class="code-block"><code>let name = "أحمد";
+const age = 16;
+var school = "بنايوس";
+
+console.log(name, age, school);</code></pre>
+            <p class="text-muted">إعلان المتغيرات / Variable declaration</p>
+          </div>
+
+          <div class="card">
+            <h4>3. Math Operations</h4>
+            <pre class="code-block"><code>let a = 10;
+let b = 5;
+
+console.log("الجمع:", a + b);
+console.log("الطرح:", a - b);
+console.log("الضرب:", a * b);
+console.log("القسمة:", a / b);</code></pre>
+            <p class="text-muted">العمليات الحسابية / Arithmetic operations</p>
+          </div>
+
+          <div class="card">
+            <h4>4. If Statement</h4>
+            <pre class="code-block"><code>let score = 85;
+
+if (score >= 90) {
+  console.log("ممتاز!");
+} else if (score >= 70) {
+  console.log("جيد جداً!");
+} else {
+  console.log("حاول مرة أخرى");
+}</code></pre>
+            <p class="text-muted">الجمل الشرطية / Conditional statements</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intermediate Examples -->
+      <div class="card mt-2 fade-in-up">
+        <h3>🚀 أمثلة متوسطة / Intermediate Examples</h3>
+        <div class="grid grid-2 mt-1">
+          <div class="card">
+            <h4>5. For Loop</h4>
+            <pre class="code-block"><code>for (let i = 1; i <= 5; i++) {
+  console.log("العدد:", i);
+}
+
+// Output: 1, 2, 3, 4, 5</code></pre>
+            <p class="text-muted">حلقة for / For loop</p>
+          </div>
+
+          <div class="card">
+            <h4>6. Functions</h4>
+            <pre class="code-block"><code>function greet(name) {
+  return "مرحباً " + name;
+}
+
+console.log(greet("أحمد"));
+console.log(greet("فاطمة"));</code></pre>
+            <p class="text-muted">تعريف الدوال / Function definition</p>
+          </div>
+
+          <div class="card">
+            <h4>7. Arrays</h4>
+            <pre class="code-block"><code>let fruits = ["تفاح", "موز", "برتقال"];
+
+console.log(fruits[0]); // تفاح
+console.log(fruits.length); // 3
+
+fruits.push("عنب");
+console.log(fruits);</code></pre>
+            <p class="text-muted">المصفوفات / Arrays</p>
+          </div>
+
+          <div class="card">
+            <h4>8. Objects</h4>
+            <pre class="code-block"><code>let student = {
+  name: "أحمد",
+  age: 16,
+  grade: 10,
+  school: "بنايوس"
+};
+
+console.log(student.name);
+console.log(student["age"]);</code></pre>
+            <p class="text-muted">الكائنات / Objects</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOM Examples -->
+      <div class="card mt-2 fade-in-up">
+        <h3>🎨 أمثلة DOM / DOM Examples</h3>
+        <div class="grid grid-2 mt-1">
+          <div class="card">
+            <h4>9. Change Text</h4>
+            <pre class="code-block"><code>const element = document.getElementById('app');
+element.textContent = "مرحباً بك!";
+element.style.color = "blue";
+element.style.fontSize = "24px";</code></pre>
+            <p class="text-muted">تغيير النص / Changing text</p>
+          </div>
+
+          <div class="card">
+            <h4>10. Create Elements</h4>
+            <pre class="code-block"><code>const div = document.createElement('div');
+div.innerHTML = '&lt;h2&gt;عنوان جديد&lt;/h2&gt;';
+div.className = 'card';
+
+document.getElementById('app')
+  .appendChild(div);</code></pre>
+            <p class="text-muted">إنشاء عناصر / Creating elements</p>
+          </div>
+
+          <div class="card">
+            <h4>11. Button Click</h4>
+            <pre class="code-block"><code>const btn = document.createElement('button');
+btn.textContent = 'اضغط هنا';
+btn.onclick = function() {
+  alert('تم الضغط على الزر!');
+};
+
+document.getElementById('app')
+  .appendChild(btn);</code></pre>
+            <p class="text-muted">حدث النقر / Click event</p>
+          </div>
+
+          <div class="card">
+            <h4>12. Counter</h4>
+            <pre class="code-block"><code>let count = 0;
+const app = document.getElementById('app');
+
+app.innerHTML = \`
+  &lt;h2&gt;العداد: &lt;span id="count"&gt;0&lt;/span&gt;&lt;/h2&gt;
+  &lt;button onclick="increment()"&gt;+&lt;/button&gt;
+\`;
+
+function increment() {
+  count++;
+  document.getElementById('count')
+    .textContent = count;
+}</code></pre>
+            <p class="text-muted">عداد تفاعلي / Interactive counter</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-2">
+        <a href="/pages/experiments.html" class="btn btn-primary">جرب الأمثلة / Try Examples</a>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="/js/core.js"></script>
+  <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/693fc182a98748197f472255/1jcggnphq';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>

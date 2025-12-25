@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playground - VibeJS</title>
+  <link rel="icon" type="image/jpeg" href="/images/JS-ico.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="/images/JS-ico.jpg">
+  <link rel="apple-touch-icon" href="/images/JS-ico.jpg">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/animate.css">
+  <style>
+    .playground-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-2xl);
+    }
+    
+    @media (max-width: 768px) {
+      .playground-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+      }
+    }
+    
+    .playground-panel {
+      display: flex;
+      flex-direction: column;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .playground-panel:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .playground-panel:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+    
+    .playground-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+    }
+
+    .playground-header h3 {
+      color: var(--text);
+      margin: 0;
+    }
+    
+    #codeArea {
+      width: 100%;
+      min-height: 400px;
+      padding: var(--spacing-lg);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      background: linear-gradient(135deg, var(--code-bg) 0%, var(--bg-secondary) 100%);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      resize: vertical;
+      transition: all var(--transition-base);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    #codeArea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(13, 110, 253, 0.1);
+    }
+    
+    #outputFrame {
+      width: 100%;
+      min-height: 400px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      background: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: all var(--transition-base);
+    }
+
+    #outputFrame:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- Welcome Modal Placeholder -->
+  <div id="welcome-modal-placeholder"></div>
+
+  <main class="container">
+    <section class="section">
+      <div class="hero">
+        <h1 data-i18n="experiments.title">Interactive Playground</h1>
+        <p data-i18n="experiments.subtitle">Try JavaScript code directly in the browser</p>
+      </div>
+
+      <div class="card mt-2 fade-in-up">
+        <h3>💡 نصائح / Tips</h3>
+        <ul style="line-height: 1.8;">
+          <li>استخدم <code>console.log()</code> لطباعة القيم / Use <code>console.log()</code> to print values</li>
+          <li>استخدم <code>document.getElementById('app')</code> للوصول للعنصر الرئيسي / Use <code>document.getElementById('app')</code> to access the main element</li>
+          <li>اضغط Ctrl/Cmd + Enter لتشغيل الكود / Press Ctrl/Cmd + Enter to run code</li>
+          <li>الكود يعمل في بيئة آمنة ومعزولة / Code runs in a safe, isolated environment</li>
+        </ul>
+      </div>
+
+      <div class="playground-container">
+        <div class="playground-panel">
+          <div class="playground-header">
+            <h3 data-i18n="experiments.code">Code</h3>
+            <div class="btn-group">
+              <button id="runBtn" class="btn btn-primary" data-i18n="experiments.run">Run</button>
+              <button id="clearBtn" class="btn btn-secondary" data-i18n="experiments.clear">Clear</button>
+              <button id="resetBtn" class="btn btn-secondary" data-i18n="experiments.reset">Reset</button>
+            </div>
+          </div>
+          <textarea id="codeArea" placeholder="// Write your JavaScript code here...
+// اكتب كود JavaScript هنا..."></textarea>
+        </div>
+
+        <div class="playground-panel">
+          <div class="playground-header">
+            <h3 data-i18n="experiments.output">Output</h3>
+          </div>
+          <iframe id="outputFrame" sandbox="allow-scripts"></iframe>
+        </div>
+      </div>
+
+      <div class="card mt-2 fade-in-up">
+        <h3>📚 أمثلة سريعة / Quick Examples</h3>
+        <p class="text-muted mb-2">Click any button below to load a quick example into the code editor</p>
+        <div class="btn-group">
+          <button class="btn btn-secondary" data-example="hello">Hello World</button>
+          <button class="btn btn-secondary" data-example="dom">DOM Manipulation</button>
+          <button class="btn btn-secondary" data-example="loop">Loop Example</button>
+          <button class="btn btn-secondary" data-example="array">Array Methods</button>
+          <button class="btn btn-secondary" data-example="object">Objects</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script src="/js/core.js"></script>
+  <script src="/js/experiments.js"></script>
+  <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+  s1.async=true;
+  s1.src='https://embed.tawk.to/693fc182a98748197f472255/1jcggnphq';
+  s1.charset='UTF-8';
+  s1.setAttribute('crossorigin','*');
+  s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!-- Welcome Modal -->
+<div id="welcomeModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+  <div class="modal-content slide-down">
+    <button id="welcomeCloseBtn" class="modal-close" aria-label="Close">×</button>
+    
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+      <img src="/images/JS.jpg" alt="VibeJS Logo" width="80" height="80" class="bounce" style="border-radius: 50%; box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);">
+    </div>
+    
+    <h2 id="welcomeTitle" style="text-align: center; color: var(--accent); margin-bottom: 1rem;">
+      Welcome to VibeJS! 🎉
+    </h2>
+    
+    <div style="line-height: 1.8; margin-bottom: 1.5rem; text-align: center;">
+      <p style="font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 1rem;">
+        <strong style="color: var(--text);">Interactive JavaScript Learning Platform</strong>
+      </p>
+      
+      <div style="background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--card-bg) 100%); padding: 1.5rem; border-radius: var(--radius-md); margin: 1rem 0; text-align: left; border: 1px solid var(--card-border);">
+        <p style="margin-bottom: 0.75rem;"><strong style="color: var(--accent);">👨‍💻 Creator:</strong> <span style="color: var(--text);">Mohamed A. A. Abdelfatah</span></p>
+        <p style="margin-bottom: 0.75rem;"><strong style="color: var(--accent);">🏫 School:</strong> <span style="color: var(--text);">Banayos Joint Secondary School</span></p>
+        <p style="margin-bottom: 0.75rem;"><strong style="color: var(--accent);">📍 Location:</strong> <span style="color: var(--text);">Sharkia Governorate</span></p>
+        <p style="margin-bottom: 0.75rem;"><strong style="color: var(--accent);">📋 Department:</strong> <span style="color: var(--text);">West Zagazig Educational Administration</span></p>
+        <p style="margin-bottom: 0;"><strong style="color: var(--accent);">🎯 Purpose:</strong> <span style="color: var(--text);">Educational platform for learning JavaScript</span></p>
+      </div>
+
+      <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 1rem;">
+        <span style="color: var(--text);">بنايوس الثانوية المشتركة - محافظة الشرقية، إدارة غرب الزقازيق التعليمية</span>
+      </p>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <button onclick="window.VibeJS.closeWelcomeModal()" class="btn btn-primary">
+        Get Started
+      </button>
+    </div>
+    
+    <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; color: var(--text-secondary);">
+      This message will close automatically in <span id="countdown">10</span> seconds
+    </p>
+  </div>
+</div>
+

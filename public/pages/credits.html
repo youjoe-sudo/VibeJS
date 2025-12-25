@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits - VibeJS</title>
+    <link rel="icon" type="image/jpeg" href="/images/JS-ico.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="/images/JS-ico.jpg">
+    <link rel="apple-touch-icon" href="/images/JS-ico.jpg">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <style>
+        .credits-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .credits-section h2 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--accent);
+            position: relative;
+        }
+
+        .credits-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .credits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .credit-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .credit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(13, 110, 253, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .credit-card:hover::before {
+            left: 100%;
+        }
+
+        .credit-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(13, 110, 253, 0.2), 0 0 0 1px rgba(13, 110, 253, 0.1);
+            border-color: var(--accent);
+        }
+
+        .credit-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .credit-card h3 {
+            font-size: var(--font-size-xl);
+            color: var(--text);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .credit-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        .credit-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-base);
+            margin-top: var(--spacing-sm);
+        }
+
+        .credit-link:hover {
+            color: var(--accent-hover);
+            transform: translateX(3px);
+        }
+
+        .credit-link::after {
+            content: ' ↗';
+            margin-left: var(--spacing-xs);
+        }
+
+        .credit-card:nth-child(1) { animation-delay: 0.1s; }
+        .credit-card:nth-child(2) { animation-delay: 0.2s; }
+        .credit-card:nth-child(3) { animation-delay: 0.3s; }
+        .credit-card:nth-child(4) { animation-delay: 0.4s; }
+        .credit-card:nth-child(5) { animation-delay: 0.5s; }
+        .credit-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .acknowledgment {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .acknowledgment h3 {
+            color: var(--accent);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .acknowledgment p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Welcome Modal Placeholder -->
+    <div id="welcome-modal-placeholder"></div>
+
+    <main class="container">
+        <section class="section">
+            <div class="hero fade-in">
+                <h1 data-i18n="nav.credits">Credits</h1>
+                <p>شكر وتقدير / Acknowledgments & Credits</p>
+            </div>
+
+            <!-- Technologies Used -->
+            <div class="credits-section fade-in-up">
+                <h2>🛠️ Technologies & Libraries</h2>
+                <div class="credits-grid">
+                    <div class="credit-card">
+                        <div class="credit-icon">⚡</div>
+                        <h3>JavaScript</h3>
+                        <p>The core programming language powering this platform</p>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="credit-link">Learn More</a>
+                    </div>
+
+                    <div class="credit-card">
+                        <div class="credit-icon">🌐</div>
+                        <h3>HTML5 & CSS3</h3>
+                        <p>Modern web standards for structure and styling</p>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web" target="_blank" rel="noopener noreferrer" class="credit-link">Learn More</a>
+                    </div>
+
+                    <div class="credit-card">
+                        <div class="credit-icon">🚀</div>
+                        <h3>Express.js</h3>
+                        <p>Fast, unopinionated web framework for Node.js</p>
+                        <a href="https://expressjs.com" target="_blank" rel="noopener noreferrer" class="credit-link">Visit Website</a>
+                    </div>
+
+                    <div class="credit-card">
+                        <div class="credit-icon">📧</div>
+                        <h3>EmailJS</h3>
+                        <p>Email service for sending contact form messages</p>
+                        <a href="https://www.emailjs.com" target="_blank" rel="noopener noreferrer" class="credit-link">Visit Website</a>
+                    </div>
+
+                    <div class="credit-card">
+                        <div class="credit-icon">🎨</div>
+                        <h3>Font Awesome</h3>
+                        <p>Icon library for beautiful icons throughout the site</p>
+                        <a href="https://fontawesome.com" target="_blank" rel="noopener noreferrer" class="credit-link">Visit Website</a>
+                    </div>
+
+                    <div class="credit-card">
+                        <div class="credit-icon">📚</div>
+                        <h3>Google Fonts</h3>
+                        <p>Typography: Cairo, Inter, and other web fonts</p>
+                        <a href="https://fonts.google.com" target="_blank" rel="noopener noreferrer" class="credit-link">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources & Inspiration -->
+            <div class="credits-section fade-in-up">
+                <h2>📖 Educational Resources</h2>
+                <div class="credits-grid">
+                    <div class="credit-card">
+                        <div class="credit-icon">📘</div>
+                        <h3>MDN Web Docs</h3>
+                        <p>Comprehensive JavaScript documentation and references</p>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="credit-link">Visit MDN</a>
+                    </div>
+
+                    <div class="credit-card">
+                        <div class="credit-icon">📗</div>
+                        <h3>JavaScript.info</h3>
+                        <p>Modern JavaScript tutorial and learning resource</p>
+                        <a href="https://javascript.info" target="_blank" rel="noopener noreferrer" class="credit-link">Visit Website</a>
+                    </div>
+
+                    <div class="credit-card">
+                        <div class="credit-icon">🎓</div>
+                        <h3>W3Schools</h3>
+                        <p>Web development tutorials and examples</p>
+                        <a href="https://www.w3schools.com" target="_blank" rel="noopener noreferrer" class="credit-link">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Development Team -->
+            <div class="credits-section fade-in-up">
+                <h2>👨‍💻 Development Team</h2>
+                <div class="credits-grid">
+                    <div class="credit-card">
+                        <div class="credit-icon">💻</div>
+                        <h3>Mohamed A. Abdelfatah</h3>
+                        <p>Developer & Creator</p>
+                        <p class="text-muted" style="font-size: var(--font-size-sm);">Banayos Joint Secondary School</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- School Information -->
+            <div class="acknowledgment">
+                <h3>🏫 School Information</h3>
+                <p>
+                    <strong>Banayos Joint Secondary School</strong><br>
+                    Sharkia Governorate<br>
+                    West Zagazig Educational Administration<br>
+                    <span class="text-muted">بنايوس الثانوية المشتركة - محافظة الشرقية، إدارة غرب الزقازيق التعليمية</span>
+                </p>
+            </div>
+
+            <!-- Special Thanks -->
+            <div class="acknowledgment">
+                <h3>🙏 Special Thanks</h3>
+                <p>
+                    Special thanks to all the open-source community, educators, and developers who have contributed to the tools and resources that made this platform possible. Your dedication to education and technology inspires us every day.
+                </p>
+                <p class="text-muted" style="margin-top: var(--spacing-md);">
+                    شكر خاص لمجتمع المصادر المفتوحة والمربين والمطورين الذين ساهموا في الأدوات والموارد التي جعلت هذه المنصة ممكنة. تفانيكم في التعليم والتكنولوجيا يلهمنا كل يوم.
+                </p>
+            </div>
+
+            <!-- License Information -->
+            <div class="acknowledgment">
+                <h3>📄 License & Usage</h3>
+                <p>
+                    This educational platform is created for learning purposes. All content is provided for educational use. 
+                    External resources and libraries maintain their respective licenses.
+                </p>
+                <p class="text-muted" style="margin-top: var(--spacing-md);">
+                    تم إنشاء هذه المنصة التعليمية لأغراض التعلم. يتم توفير جميع المحتويات للاستخدام التعليمي. 
+                    تحتفظ الموارد والمكتبات الخارجية بتراخيصها الخاصة.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="/js/core.js"></script>
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/693fc182a98748197f472255/1jcggnphq';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>
+

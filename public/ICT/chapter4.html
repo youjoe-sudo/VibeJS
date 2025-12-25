@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>مذكرة تفاعلية - البرمجة والذكاء الاصطناعي</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Cairo:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ========================================================== */
+        /* 1. المتغيرات والأساسيات (Variables & Base) */
+        /* ========================================================== */
+        :root {
+            /* Dark Theme Colors */
+            --bg1: #0a1128;
+            /* Deep Blue Background */
+            --bg2: #050a1a;
+            /* Darker Blue */
+            --card-bg: #111a30;
+            /* Card background */
+            --accent1: #ff5733;
+            /* Strong Orange/Red Accent */
+            --accent2: #4cc9f0;
+            /* Vibrant Cyan/Blue */
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-2: rgba(255, 255, 255, 0.03);
+            --text: #e6f7ff;
+            --muted: #a0c2d6;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --success: #10b981;
+            --shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+
+            /* Typography */
+            font-family: 'Cairo', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(135deg, var(--bg1), var(--bg2));
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .wrap {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px
+        }
+
+        .stage {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 35px;
+            align-items: start
+        }
+
+        /* ========================================================== */
+        /* 2. البطاقة الرئيسية (Content Card) */
+        /* ========================================================== */
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative light effect */
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 10% 10%, rgba(76, 201, 240, 0.08), transparent 15%),
+                radial-gradient(circle at 90% 90%, rgba(255, 87, 51, 0.06), transparent 18%);
+            pointer-events: none;
+        }
+
+        .title-section {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 18px;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent1), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--text);
+            font-size: 20px;
+            box-shadow: 0 0 15px rgba(255, 87, 51, 0.5);
+            animation: pulse-logo 4s infinite;
+        }
+
+        @keyframes pulse-logo {
+
+            0%,
+            100% {
+                box-shadow: 0 0 15px rgba(255, 87, 51, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(76, 201, 240, 0.7);
+            }
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            line-height: 1.3;
+            color: var(--accent2);
+        }
+
+        p.lead {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .slide {
+            min-height: 400px;
+            padding: 20px;
+            border-radius: 18px;
+            background: var(--glass);
+            border: 1px solid var(--glass-2);
+            backdrop-filter: blur(10px);
+            transition: transform .6s cubic-bezier(.2, .9, .2, 1), opacity .5s;
+        }
+
+        .slide.enter {
+            animation: slideIn .6s ease both
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px) scale(.99);
+                opacity: 0
+            }
+
+            to {
+                transform: none;
+                opacity: 1
+            }
+        }
+
+        .slide h2 {
+            margin: 0 0 18px;
+            font-size: 22px;
+            color: var(--accent1);
+            border-right: 4px solid var(--accent1);
+            padding-right: 10px;
+        }
+
+        .bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .bullet {
+            background: var(--glass-2);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 1rem;
+            position: relative;
+            padding-right: 40px;
+            /* Space for the icon */
+        }
+
+        .bullet::before {
+            content: "✓";
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent2);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .task-box {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 12px;
+            background: rgba(255, 87, 51, 0.1);
+            border: 1px dashed var(--accent1);
+            color: var(--text);
+        }
+
+        .task-box strong {
+            color: var(--accent1);
+        }
+
+        /* Active Recall Mode */
+        .recall-prompt {
+            margin-top: 15px;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(76, 201, 240, 0.1);
+            border: 1px solid var(--accent2);
+            color: var(--text);
+            text-align: center;
+        }
+
+        .reveal-btn {
+            margin-top: 15px;
+            background: var(--accent2);
+            color: var(--bg1);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: background .2s;
+        }
+
+        .reveal-btn:hover {
+            background: #a3e635;
+        }
+
+        /* Quiz Mode */
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background .2s, border-color .2s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        .quiz-option.wrong {
+            border-color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
+        }
+
+        .quiz-option .icon {
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+
+        /* ========================================================== */
+        /* 3. الشريط الجانبي (Sidebar Controls) */
+        /* ========================================================== */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 35px
+        }
+
+        .meta {
+            padding: 25px;
+            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 6px 15px rgba(2, 6, 23, 0.4);
+        }
+
+        .progress-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px
+        }
+
+        .progress-label {
+            font-weight: bold;
+            color: var(--accent2);
+        }
+
+        .progress {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 10px
+        }
+
+        .progress>i {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent2), var(--accent1));
+            width: 0%;
+            transition: width .6s;
+            border-radius: 999px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 25px
+        }
+
+        button.btn {
+            cursor: pointer;
+            border: 0;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: var(--bg1);
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(255, 87, 51, 0.4);
+            transition: transform .2s;
+            flex-grow: 1;
+        }
+
+        button.btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 87, 51, 0.6);
+        }
+
+        button.ghost {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s;
+            flex-grow: 0;
+            min-width: 80px;
+        }
+
+        button.ghost:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .modes {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+
+        .mode {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            font-weight: 600;
+            transition: background .2s;
+            color: var(--muted);
+        }
+
+        .mode.active {
+            background: linear-gradient(90deg, rgba(76, 201, 240, 0.15), rgba(255, 87, 51, 0.08));
+            border: 1px solid var(--accent2);
+            color: var(--text);
+        }
+
+        .mode:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Tips and Notes */
+        .tips {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .tips ol {
+            padding-right: 20px;
+            margin: 10px 0 0;
+            list-style-type: arabic-indic;
+            line-height: 1.7
+        }
+
+        .tips li {
+            margin-bottom: 8px;
+        }
+
+        .nxt {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            color: var(--bg1);
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(255, 87, 51, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* ========================================================== */
+        /* 4. الاستجابة (Responsive) */
+        /* ========================================================== */
+        @media(max-width:980px) {
+            .wrap {
+                padding: 20px;
+            }
+
+            .stage {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .sidebar {
+                order: 2
+            }
+        }
+
+        @media(max-width:600px) {
+            .title-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .logo {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .meta {
+                padding: 20px;
+            }
+
+            .controls button {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="stage">
+            <div class="card">
+                <div class="title-section">
+                    <div class="logo">AI</div>
+                    <div>
+                        <h1>البرمجة والذكاء الاصطناعي: تطور تكنولوجيا المعلومات</h1>
+                        <p class="lead">دراسة تفاعلية للوحدة 1-4: التقدم في تكنولوجيا المعلومات والمجتمع
+                            المستقبلي.</p>
+                    </div>
+                </div>
+
+                <div id="slide" class="slide enter" role="main" aria-live="polite">
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="meta">
+                    <div class="progress-box">
+                        <div class="progress-label">التقدم</div>
+                        <div class="muted">الشريحة <span id="index">1</span>/<span id="total">3</span></div>
+                    </div>
+                    <div class="progress"><i id="prog"></i></div>
+
+                    <div class="controls">
+                        <button id="prev" class="ghost" disabled>السابق</button>
+                        <button id="play" class="btn">تشغيل تلقائي</button>
+                        <button id="next" class="ghost">التالي</button>
+                    </div>
+
+                    <div class="modes">
+                        <div class="mode active" data-mode="read" id="modeRead">قراءة مركزة
+                        </div>
+                        <div class="mode" data-mode="activeRecall" id="modeRecall">تذكّر نشط
+                        </div>
+                        <div class="mode" data-mode="quiz" id="modeQuiz">اختبار سريع</div>
+                    </div>
+                </div>
+
+                <div class="meta tips">
+                    <div class="progress-label">💡 استراتيجيات للمذاكرة</div>
+                    <ol>
+                        <li>**التكرار المتباعد:** راجع الشريحة في وضع التذكّر بعد فترات زمنية
+                            متزايدة (تقوية الذاكرة).</li>
+                        <li>**التحويل العملي:** حوّل الأفكار النظرية إلى أمثلة حياتية أو تمثيل
+                            بالشيفرة.</li>
+                        <li>**التوقف والشرح:** اشرح المفهوم لنفسك بصوت عالٍ قبل الانتقال للشريحة
+                            التالية.</li>
+                    </ol>
+                    <div style="text-align:center; margin-top:15px;">
+                        <button id="resetApp" class="ghost">إعادة ضبط التطبيق</button>
+                        <a href="/ICT/chapter5.html" class="nxt">التالي</a>
+
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+
+    <script>
+        // ==========================================================
+        // 5. محتوى المنهج (السكربت الثابت) - تم تحديثه ليناسب ملف تطور تكنولوجيا المعلومات (Chapter 4)
+        // ==========================================================
+        const slidesData = [
+            {
+                id: 1,
+                title: 'تدفق التطور المجتمعي عبر العصور',
+                bullets: [
+                    'مجتمع الصيادين الجامعين (Hunter-gatherer society): منذ ولادة البشرية، يعيش الناس فيه من خلال الصيد (الأدوات: الفؤوس الحجرية، الأقواس والسهام، اللغة)[cite: 158].',
+                    'المجتمع الزراعي (Agrarian society): منذ حوالي 13,000 قبل الميلاد، يعيش الناس حياة مستقرة من خلال زراعة الغذاء وحصاده (الأدوات: الأدوات الزراعية، الري)[cite: 158].',
+                    'المجتمع الصناعي (Industrialized society): منذ منتصف القرن الثامن عشر، تقدمت فيه الصناعة بالإنتاج الضخم باستخدام الآلات (بفضل اختراع المحرك البخاري والكهرباء)[cite: 158].',
+                    'مجتمع المعلومات (Information society): منذ النصف الثاني من القرن العشرين، تعززت الأتمتة فيه بتقدم أجهزة الكمبيوتر والإنترنت[cite: 158].'
+                ],
+                note: 'تذكّر تسلسل المجتمعات وتأثير التقنيات الجديدة على كل مرحلة (الصيد، الزراعة، الإنتاج الضخم، الأتمتة).'
+            },
+
+            {
+                id: 2,
+                title: 'التقنيات المؤثرة في مجتمع المعلومات',
+                bullets: [
+                    'إنترنت الأشياء (IoT): بيئة تتصل فيها جميع الأشياء بالإنترنت وتتواصل مع بعضها البعض[cite: 158].',
+                    'الذكاء الاصطناعي (AI): تكنولوجيا تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري اصطناعياً[cite: 158].',
+                    'الواقع الافتراضي (VR): تكنولوجيا لبناء بيئات افتراضية يمكن أن يعيشها البشر[cite: 158].',
+                    'الواقع المعزز (AR): تكنولوجيا تضيف معلومات (صور، مقاطع فيديو) باستخدام أجهزة الكمبيوتر إلى البيئات الواقعية[cite: 158].',
+                ],
+                note: 'فرّق بين الواقع الافتراضي (VR) الذي يخلق بيئة كاملة، والواقع المعزز (AR) الذي يضيف معلومات إلى البيئة الحقيقية.'
+            },
+            {
+                id: 3,
+                title: 'تحليل البيانات الضخمة (Big Data) وأهميته',
+                bullets: [
+                    'تحليل البيانات الضخمة يسمح باتخاذ قرارات أسرع وأكثر دقة في مجالات مثل التشخيص الطبي[cite: 158].',
+                    'من استخداماته: مراقبة ظروف المرور في الوقت الفعلي، والتنبؤ بالازدحام، واقتراح المسارات المثلى[cite: 158].',
+                    'لا يعتمد تحليل البيانات الضخمة عادةً على أساليب التحليل النوعية التقليدية مثل المقابلات الجماعية[cite: 158].'
+                ],
+                note: 'المقابلات الجماعية هي طريقة تحليل نوعية تقليدية، أما تحليل البيانات الضخمة فيعتمد على الكم الهائل من البيانات.'
+            }
+        ];
+
+        // ==========================================================
+        // 6. منطق JavaScript (المحدّث)
+        // ==========================================================
+        let slides = JSON.parse(JSON.stringify(slidesData));
+        const totalEl = document.getElementById('total');
+        const indexEl = document.getElementById('index');
+        const slideEl = document.getElementById('slide');
+        const prog = document.getElementById('prog');
+        const modeLabel = document.getElementById('modeLabel');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+
+        let cur = 0; let mode = 'read'; let playing = false; let playTimer;
+
+        function render(i) {
+            const s = slides[i];
+            cur = i;
+            indexEl.textContent = i + 1;
+            totalEl.textContent = slides.length;
+            prog.style.width = ((i + 1) / slides.length * 100) + '%';
+            slideEl.classList.remove('enter');
+            void slideEl.offsetWidth;
+            slideEl.classList.add('enter');
+            updateNavigationButtons();
+
+            // بناء المحتوى الأساسي
+            slideEl.innerHTML = `
+                <h2>${escapeHtml(s.title)}</h2>
+                <div class=bullets id="slideBullets">
+                    ${s.bullets.map(b => `<div class=bullet>${b}</div>`).join('')}
+                </div>
+                <div class="task-box"><strong>تطبيق/مهمة:</strong> ${escapeHtml(s.note || '')}</div>
+            `;
+
+            const slideBullets = slideEl.querySelector('#slideBullets');
+
+            // وضع التذكّر (Active Recall)
+            if (mode === 'activeRecall') {
+                slideBullets.style.filter = 'blur(6px)';
+                slideBullets.style.opacity = '0.15';
+                const prompt = document.createElement('div');
+                prompt.className = 'recall-prompt';
+                prompt.innerHTML = `
+                    <p style="margin: 0 0 10px;">حاول تذكّر النقاط الأساسية والمفاهيم قبل الكشف.</p>
+                    <button class="reveal-btn">كشف النقاط (Reveal)</button>
+                `;
+
+                const btn = prompt.querySelector('.reveal-btn');
+                btn.onclick = () => { slideBullets.style.filter = 'none'; slideBullets.style.opacity = '1'; btn.remove(); };
+
+                slideEl.insertBefore(prompt, slideEl.querySelector('.task-box'));
+            }
+
+            // وضع الاختبار (Quiz) - بسيط وموجه للمنهج
+            if (mode === 'quiz') {
+                slideBullets.style.display = 'none';
+                slideEl.querySelector('.task-box').style.display = 'none';
+
+                const qwrap = document.createElement('div'); qwrap.style.marginTop = '16px';
+                qwrap.innerHTML = `<div style="font-weight:bold; margin-bottom:10px; color:var(--accent2);">اختر المصطلح أو الخاصية الصحيحة:</div>`;
+
+                // إنشاء سؤال بسيط (مثال: سؤال عن خاصية أو تعريف من الشريحة الحالية)
+                let question, correctText, allOptions;
+
+                if (i === 0) { // تدفق التطور
+                    question = "ما هو المجتمع الذي تقدمت فيه الصناعة بالإنتاج الضخم باستخدام الآلات؟ [cite: 158]";
+                    correctText = "المجتمع الصناعي";
+                    allOptions = [correctText, "مجتمع الصيادين الجامعين", "المجتمع الزراعي", "مجتمع المعلومات"];
+                } else if (i === 1) { // التقنيات المؤثرة
+                    question = "التكنولوجيا التي تستخدم أجهزة الكمبيوتر لتقليد السلوك الفكري البشري اصطناعياً؟ [cite: 158]";
+                    correctText = "الذكاء الاصطناعي (AI)";
+                    allOptions = [correctText, "إنترنت الأشياء (IoT)", "الواقع الافتراضي (VR)", "الواقع المعزز (AR)"];
+                } else if (i === 2) { // البيانات الضخمة
+                    question = "أي من العبارات التالية تعتبر الأكثر عدم ملاءمة فيما يتعلق بتحليل البيانات الضخمة؟ [cite: 158]";
+                    correctText = "تحليل انماط سلوك المستهلك بناء على نتائج المقابلات الجماعية";
+                    allOptions = [correctText, "مراقبة ظروف المرور في الوقت الفعلي", "إجراء تشخيصات سريعة ودقيقة للأطباء"];
+                } else { // Fallback question
+                    question = `ما هو العنصر الأساسي لأمن المعلومات الذي يعني أن المعلومات لم يتم تدميرها أو العبث بها؟`;
+                    correctText = "السلامة (Integrity)";
+                    allOptions = [correctText, "السرية", "التوافرية"];
+                }
+
+                qwrap.querySelector('div').textContent = question; // تحديث نص السؤال
+
+                const options = shuffle([...new Set(allOptions)]).slice(0, 3); // خلط وأخذ 3 خيارات كحد أقصى
+
+                const list = document.createElement('div');
+                list.style.marginTop = '15px';
+                list.style.display = 'flex';
+                list.style.flexDirection = 'column';
+                list.style.gap = '10px';
+
+                let answered = false;
+                options.forEach((opt, idx) => {
+                    const b = document.createElement('div');
+                    b.className = 'quiz-option';
+                    b.innerHTML = `<span class="icon">${String.fromCharCode(0x0623 + idx)}</span> ${opt}`; // أحرف عربية أ، ب، ت
+                    b.onclick = () => {
+                        if (answered) return;
+                        answered = true;
+
+                        if (opt.includes(correctText)) {
+                            b.classList.add('correct');
+                        } else {
+                            b.classList.add('wrong');
+                            // محاولة إظهار الإجابة الصحيحة
+                            document.querySelectorAll('.quiz-option').forEach(other => {
+                                if (other.textContent.includes(correctText)) {
+                                    other.classList.add('correct');
+                                }
+                            });
+                        }
+                    };
+                    list.appendChild(b);
+                });
+
+                qwrap.appendChild(list);
+                slideEl.appendChild(qwrap);
+            }
+        }
+
+        // helpers
+        function escapeHtml(s) { return (s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]); }
+        function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]] } return a }
+
+        function updateNavigationButtons() {
+            prevBtn.disabled = cur === 0;
+            nextBtn.disabled = cur === slides.length - 1;
+            if (cur === slides.length - 1) {
+                document.getElementById('play').textContent = 'إعادة البدء';
+            } else {
+                document.getElementById('play').textContent = playing ? 'إيقاف تلقائي' : 'تشغيل تلقائي';
+            }
+        }
+
+
+        // controls
+        prevBtn.onclick = () => {
+            stopPlay();
+            cur = (cur - 1 + slides.length) % slides.length;
+            render(cur);
+        }
+
+        nextBtn.onclick = () => {
+            stopPlay();
+            cur = (cur + 1) % slides.length;
+            render(cur);
+        }
+
+        document.getElementById('play').onclick = () => {
+            if (cur === slides.length - 1) {
+                // إعادة البدء عند الوصول للنهاية
+                cur = 0;
+                render(cur);
+                startPlay();
+            } else if (playing) {
+                stopPlay();
+            } else {
+                startPlay();
+            }
+        }
+
+        function startPlay() {
+            playing = true;
+            document.getElementById('play').textContent = 'إيقاف تلقائي';
+            playTimer = setInterval(() => {
+                if (cur === slides.length - 1) {
+                    stopPlay();
+                    document.getElementById('play').textContent = 'إعادة البدء';
+                } else {
+                    cur = (cur + 1) % slides.length;
+                    render(cur);
+                }
+            }, 5500); // 5.5 ثانية لكل شريحة
+        }
+
+        function stopPlay() {
+            playing = false;
+            document.getElementById('play').textContent = 'تشغيل تلقائي';
+            clearInterval(playTimer)
+        }
+
+        // modes
+        document.querySelectorAll('.mode').forEach(m => m.addEventListener('click', e => {
+            document.querySelectorAll('.mode').forEach(x => x.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            mode = e.currentTarget.dataset.mode;
+
+            let label = 'قراءة مركزة';
+            if (mode === 'activeRecall') label = 'تذكّر نشط';
+            if (mode === 'quiz') label = 'اختبار سريع';
+
+            document.querySelector('.progress-box .muted').innerHTML = `وضع: ${label}`;
+            render(cur);
+        }))
+
+        // reset
+        document.getElementById('resetApp').onclick = () => {
+            stopPlay();
+            cur = 0;
+            mode = 'read';
+            document.querySelectorAll('.mode').forEach(x => x.classList.remove('active'));
+            document.getElementById('modeRead').classList.add('active');
+            document.querySelector('.progress-box .muted').innerHTML = `وضع: قراءة مركزة`;
+            render(cur);
+        };
+
+
+        // init
+        render(cur);
+
+        // keyboard
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevBtn.click(); }
+            if (e.key === ' ') { e.preventDefault(); document.getElementById('play').click() }
+        });
+
+        // nice entrance for the page
+        window.addEventListener('load', () => { document.querySelector('.logo').classList.add('pulse') });
+    </script>
+</body>
+
+</html>

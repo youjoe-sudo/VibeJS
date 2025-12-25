@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>مذكرة تفاعلية - البرمجة والذكاء الاصطناعي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+      <style>
+/* ========================================================== */
+/* 1. المتغيرات والأساسيات (Variables & Base) */
+/* ========================================================== */
+:root {
+    /* Dark Theme Colors */
+    --bg1: #0a1128; /* Deep Blue Background */
+    --bg2: #050a1a; /* Darker Blue */
+    --card-bg: #111a30; /* Card background */
+    --accent1: #ff5733; /* Strong Orange/Red Accent */
+    --accent2: #4cc9f0; /* Vibrant Cyan/Blue */
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-2: rgba(255, 255, 255, 0.03);
+    --text: #e6f7ff;
+    --muted: #a0c2d6;
+    --border-color: rgba(255, 255, 255, 0.15); /* أغمق قليلاً للوضوح */
+    --success: #10b981;
+    --shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.5); /* ظل جديد خفيف */
+
+    /* Typography */
+    font-family: 'Cairo', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    /* خلفية داكنة متدرجة */
+    background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.stage {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 35px;
+    align-items: start
+}
+
+/* ========================================================== */
+/* 2. البطاقة الرئيسية (Content Card) */
+/* ========================================================== */
+.card {
+    background: var(--card-bg);
+    border-radius: 28px; /* زيادة الانحناء */
+    padding: 40px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+/* تأثير خفيف للتمرير */
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Decorative light effect */
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 10% 10%, rgba(76, 201, 240, 0.1), transparent 15%),
+                radial-gradient(circle at 90% 90%, rgba(255, 87, 51, 0.08), transparent 18%);
+    pointer-events: none;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent1), var(--accent2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: var(--text);
+    font-size: 20px;
+    box-shadow: 0 0 15px rgba(255, 87, 51, 0.5);
+    animation: pulse-logo 4s infinite;
+}
+
+@keyframes pulse-logo {
+
+    0%,
+    100% {
+        box-shadow: 0 0 15px rgba(255, 87, 51, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(76, 201, 240, 0.7);
+    }
+}
+
+h1 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.3;
+    color: var(--accent2);
+}
+
+p.lead {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.slide {
+    min-height: 400px;
+    padding: 25px;
+    border-radius: 20px;
+    background: var(--glass); /* تأثير زجاجي شفاف */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px); /* تعميق تأثير الضبابية */
+    transition: transform .6s cubic-bezier(.2, .9, .2, 1), opacity .5s;
+}
+
+.slide h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: var(--accent1);
+    border-right: 5px solid var(--accent1); /* خط جانبي أكثر سمكًا */
+    padding-right: 12px;
+    font-weight: 700;
+}
+
+.bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* زيادة التباعد */
+    margin-bottom: 30px;
+}
+
+.bullet {
+    background: rgba(255, 255, 255, 0.05); /* خلفية النقطة */
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.05rem;
+    position: relative;
+    padding-right: 45px;
+    transition: all 0.2s;
+}
+/* تأثير خفيف عند التمرير على النقطة */
+.bullet:hover {
+    background: rgba(76, 201, 240, 0.1);
+    border-color: var(--accent2);
+}
+
+.bullet::before {
+    content: "«"; /* تغيير الرمز */
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent2);
+    font-weight: bold;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.task-box {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 87, 51, 0.15); /* ظل أغمق قليلاً */
+    border: 1px dashed var(--accent1);
+    color: var(--text);
+    font-weight: 600;
+}
+
+.task-box strong {
+    color: var(--accent1);
+    font-weight: 800;
+}
+
+/* Active Recall Mode */
+.recall-prompt {
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(76, 201, 240, 0.15);
+    border: 1px solid var(--accent2);
+    color: var(--text);
+    text-align: center;
+}
+
+.reveal-btn {
+    margin-top: 20px;
+    background: var(--accent2);
+    color: var(--bg1);
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background .3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(76, 201, 240, 0.5);
+}
+
+.reveal-btn:hover {
+    background: #a3e635; /* لون أخضر فاتح عند التمرير */
+    transform: translateY(-1px);
+}
+
+/* Quiz Mode */
+.quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+}
+
+.quiz-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.quiz-option.correct {
+    border-color: var(--success);
+    background: rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.quiz-option.wrong {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.2);
+}
+
+/* ========================================================== */
+/* 3. الشريط الجانبي (Sidebar Controls) */
+/* ========================================================== */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.meta {
+    padding: 30px;
+    border-radius: 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.progress-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.progress-label {
+    font-weight: 800;
+    color: var(--accent2);
+    font-size: 1.1rem;
+}
+
+.progress {
+    height: 14px; /* سمك شريط التقدم */
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress > i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent1));
+    width: 0%;
+    transition: width .8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* تحريك سلس */
+    border-radius: 999px;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+button.btn {
+    cursor: pointer;
+    border: 0;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    color: var(--bg1);
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(255, 87, 51, 0.4);
+    transition: transform .2s, box-shadow .2s;
+    flex-grow: 1;
+}
+
+button.btn:hover {
+    transform: translateY(-3px); /* تأثير ارتفاع */
+    box-shadow: 0 12px 25px rgba(255, 87, 51, 0.6);
+}
+
+button.ghost {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text);
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    flex-grow: 0;
+    min-width: 90px;
+}
+
+button.ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+    filter: grayscale(100%);
+}
+
+.modes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+}
+
+.mode {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all .2s;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.mode.active {
+    background: linear-gradient(90deg, rgba(76, 201, 240, 0.2), rgba(255, 87, 51, 0.1));
+    border: 1px solid var(--accent2);
+    color: var(--text);
+    box-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+}
+
+.mode:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Tips and Notes */
+.tips {
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.tips ol {
+    padding-right: 20px;
+    margin: 15px 0 0;
+    list-style-type: arabic-indic;
+    line-height: 1.8;
+}
+
+.tips li {
+    margin-bottom: 10px;
+}
+
+.tips strong {
+    color: var(--accent2);
+}
+
+.nxt {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 30px;
+    border-radius: 10px;
+    background: linear-gradient(45deg, var(--accent1), var(--accent2));
+    color: var(--bg1);
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(255, 87, 51, 0.4);
+    transition: all 0.3s ease;
+}
+
+.nxt:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 87, 51, 0.6);
+}
+
+/* ========================================================== */
+/* 4. الاستجابة (Responsive) */
+/* ========================================================== */
+/* الأجهزة اللوحية (Tablets) */
+@media(max-width:980px) {
+    .wrap {
+        padding: 25px;
+    }
+
+    .stage {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .sidebar {
+        order: 2; /* يظهر الشريط الجانبي أسفل المحتوى الرئيسي في الأجهزة الصغيرة */
+    }
+
+    .card {
+        padding: 30px;
+    }
+}
+
+/* الهواتف الذكية (Mobile Phones) */
+@media(max-width:600px) {
+    .wrap {
+        padding: 15px;
+    }
+    
+    .stage {
+        gap: 20px;
+    }
+
+    .title-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .card {
+        padding: 20px;
+        border-radius: 20px;
+    }
+    
+    .slide {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .slide h2 {
+        font-size: 20px;
+    }
+    
+    .bullet {
+        font-size: 1rem;
+        padding: 15px;
+        padding-right: 40px;
+    }
+    
+    .meta {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .controls {
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    
+    .controls button {
+        padding: 12px 15px;
+        font-size: 14px;
+        flex-grow: 1;
+    }
+    
+    button.ghost {
+        min-width: unset;
+        width: 48%; /* لتحسين التوزيع */
+    }
+    
+    button.btn {
+        width: 100%;
+        order: 3; /* جعل زر التشغيل يأخذ سطرًا كاملاً */
+    }
+
+    .modes {
+        justify-content: center;
+    }
+}
+
+</style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="stage">
+            <div class="card">
+                <div class="title-section">
+                    <div class="logo">AI</div>
+                    <div>
+                        <h1>البرمجة والذكاء الاصطناعي: التناظري والرقمي والنظام الثنائي</h1>
+                        <p class="lead">دراسة تفاعلية للوحدات 1-6: التناظري والرقمي والنظام الثنائي.</p>
+                    </div>
+                </div>
+
+                <div id="slide" class="slide enter" role="main" aria-live="polite">
+                </div>
+            </div>
+
+            <aside class="sidebar">
+                <div class="meta">
+                    <div class="progress-box">
+                        <div class="progress-label">التقدم</div>
+                        <div class="muted">الشريحة <span id="index">1</span>/<span id="total">3</span></div>
+                    </div>
+                    <div class="progress"><i id="prog"></i></div>
+
+                    <div class="controls">
+                        <button id="prev" class="ghost" disabled>السابق</button>
+                        <button id="play" class="btn">تشغيل تلقائي</button>
+                        <button id="next" class="ghost">التالي</button>
+                    </div>
+
+                    <div class="modes">
+                        <div class="mode active" data-mode="read" id="modeRead">قراءة مركزة</div>
+                        <div class="mode" data-mode="activeRecall" id="modeRecall">تذكّر نشط</div>
+                        <div class="mode" data-mode="quiz" id="modeQuiz">اختبار سريع</div>
+                    </div>
+                </div>
+
+                <div class="meta tips">
+                    <div class="progress-label">💡 استراتيجيات للمذاكرة</div>
+                    <ol>
+                        <li>**التكرار المتباعد:** راجع الشريحة في وضع التذكّر بعد فترات زمنية متزايدة (تقوية الذاكرة).</li>
+                        <li>**التحويل العملي:** حوّل الأفكار النظرية إلى أمثلة حياتية أو تمثيل بالشيفرة.</li>
+                        <li>**التوقف والشرح:** اشرح المفهوم لنفسك بصوت عالٍ قبل الانتقال للشريحة التالية.</li>
+                    </ol>
+                    <div style="text-align:center; margin-top:15px;">
+                        <button id="resetApp" class="ghost">إعادة ضبط التطبيق</button>
+                        <a class="nxt" onclick="alert('تم انتهاء الفصل الدراسي الاول')">التالي</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+
+       
+    <script>
+        // ==========================================================
+        // 5. محتوى المنهج (السكربت الثابت) - تم تحديثه ليناسب ملف التناظري والرقمي (Chapter 6)
+        // ==========================================================
+        const slidesData = [
+            {
+                id: 1,
+                title: '1-6 التناظري والرقمي (Analog and Digital)',
+                bullets: [
+                                  '**التناظري (Analog):** هي كميات تتغير تدريجيًا وبشكل مستمر ويمكن قياسها بدقة فائقة، مثل الكتلة أو الوقت أو درجة الحرارة[cite: 973]. [cite_start]البيانات الممثلة في شكل تناظري يشار إليها باسم البيانات التناظرية (analog data)[cite: 977, 978].',
+                                   '**الرقمي (Digital):** تشير إلى الكميات التي تتغير في خطوات محددة ومنفصلة ويتم تمثيلها رقميًا[cite: 979]. [cite_start]البيانات الممثلة في شكل رقمي يشار إليها باسم البيانات الرقمية (digital data)[cite: 980, 981].',
+                                      '**التحويل من تناظري إلى رقمي (Digitization):** عملية تحويل البيانات التناظرية إلى بيانات رقمية[cite: 982].',
+                                   '**التحويل من رقمي إلى تناظري:** تحويل البيانات الرقمية إلى بيانات تناظرية[cite: 982].',
+                ],
+                note: 'تذكّر أن البيانات التناظرية كميات مستمرة (مثل مقياس الزئبق)، بينما الرقمية كميات منفصلة (0 و 1).'
+            },
+
+            {
+                id: 2,
+                title: 'النظام الثنائي ومزايا البيانات الرقمية',
+                bullets: [
+                          '**النظام الثنائي (Binary System):** طريقة رقمية لتمثيل الأرقام باستخدام رقمين **0** و **1**[cite: 987]. [cite_start]هذا هو النظام الذي تُستخدم فيه جميع أنواع البيانات (الأرقام، الأحرف، الصور) في أجهزة الكمبيوتر[cite: 989, 990].',
+                             '**مزايا البيانات الرقمية:** [cite: 983]',
+                                      '    * يمكن تجميعها أو استنساخها دون إهدار[cite: 984].',
+                                      '    * من السهل تعديل وتحرير البيانات ونقلها بكفاءة[cite: 985].',
+                                    '    * من الممكن دمج أنواع مختلفة من الوسائط للتعبير عنها[cite: 986].'
+                ],
+                note: 'السؤال: أي من هذه المزايا لا تنطبق على البيانات التناظرية؟ (الإجابة: جميعها تقريباً، خاصة النقل بكفاءة والتكرار دون إهدار).'
+            },
+            {
+                id: 3,
+                title: '2-6 البت (bit) وكمية المعلومات',
+                bullets: [
+                                       '**البت (bit):** هي أصغر وحدة للمعلومات[cite: 1030].',
+                                        'لكل **بت** حالتان فقط: "**0**" و "**1**"[cite: 1030].',
+                                        'يتم تمثيل البيانات الفعلية بترتيب مجموعة من البتات (bits)[cite: 1033].',
+                                       'يمكن لـ **n** من البتات تمثيل $2^n$ احتمال مختلف من البيانات[cite: 1033].',
+                               'مثال: 3 bits يمكنها تمثيل $2^3 = 8$ احتمالات مختلفة[cite: 1037].'
+                ],
+                note: 'تطبيق: 4 بتات يمكنها تمثيل 16 احتمالًا. تذكر أن البايت الواحد (Byte) يساوي 8 بتات.'
+            }
+        ];
+
+        // ==========================================================
+        // 6. منطق JavaScript (المحدّث)
+        // ==========================================================
+        let slides = JSON.parse(JSON.stringify(slidesData));
+        const totalEl = document.getElementById('total');
+        const indexEl = document.getElementById('index');
+        const slideEl = document.getElementById('slide');
+        const prog = document.getElementById('prog');
+        const modeLabel = document.getElementById('modeLabel');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+
+        let cur = 0; let mode = 'read'; let playing = false; let playTimer;
+
+        function render(i) {
+            const s = slides[i];
+            cur = i;
+            indexEl.textContent = i + 1;
+            totalEl.textContent = slides.length;
+            prog.style.width = ((i + 1) / slides.length * 100) + '%';
+            slideEl.classList.remove('enter');
+            void slideEl.offsetWidth;
+            slideEl.classList.add('enter');
+            updateNavigationButtons();
+
+            // بناء المحتوى الأساسي
+            slideEl.innerHTML = `
+<h2>${escapeHtml(s.title)}</h2>
+<div class=bullets id="slideBullets">
+${s.bullets.map(b => `<div class=bullet>${b}</div>`).join('')}
+</div>
+<div class="task-box"><strong>تطبيق/مهمة:</strong> ${escapeHtml(s.note || '')}</div>
+`;
+
+            const slideBullets = slideEl.querySelector('#slideBullets');
+
+            // وضع التذكّر (Active Recall)
+            if (mode === 'activeRecall') {
+                slideBullets.style.filter = 'blur(6px)';
+                slideBullets.style.opacity = '0.15';
+                const prompt = document.createElement('div');
+                prompt.className = 'recall-prompt';
+                prompt.innerHTML = `
+                    <p style="margin: 0 0 10px;">حاول تذكّر النقاط الأساسية والمفاهيم قبل الكشف.</p>
+                    <button class="reveal-btn">كشف النقاط (Reveal)</button>
+                `;
+
+                const btn = prompt.querySelector('.reveal-btn');
+                btn.onclick = () => { slideBullets.style.filter = 'none'; slideBullets.style.opacity = '1'; btn.remove(); };
+
+                slideEl.insertBefore(prompt, slideEl.querySelector('.task-box'));
+            }
+
+            // وضع الاختبار (Quiz) - بسيط وموجه للمنهج
+            if (mode === 'quiz') {
+                slideBullets.style.display = 'none';
+                slideEl.querySelector('.task-box').style.display = 'none';
+
+                const qwrap = document.createElement('div'); qwrap.style.marginTop = '16px';
+                qwrap.innerHTML = `<div style="font-weight:bold; margin-bottom:10px; color:var(--accent2);">اختر المصطلح أو الخاصية الصحيحة:</div>`;
+
+                // إنشاء سؤال بسيط (مثال: سؤال عن خاصية أو تعريف من الشريحة الحالية)
+                let question, correctText, allOptions;
+
+                if (i === 0) { // التناظري والرقمي
+                                        question = "ما هو المصطلح الذي يطلق على الكميات التي تتغير تدريجياً وبشكل مستمر؟ [cite: 973]";
+                    correctText = "التناظرية";
+                    allOptions = [correctText, "الرقمية", "النظام الثنائي", "تحويل D/A"];
+                } else if (i === 1) { // مزايا البيانات الرقمية
+                                        question = "أي من العبارات التالية **ليست** من مزايا البيانات الرقمية؟ [cite: 983, 1022]";
+                    correctText = "يمكنها التعبير عن الكميات التي تتغير بشكل مستمر";
+                    allOptions = [correctText, "يمكن تجميع البيانات أو استنساخها دون إهدار", "من الممكن نقل البيانات بكفاءة", "من السهل تعديل وتحرير البيانات"];
+                } else if (i === 2) { // البت
+                                        question = "أصغر وحدة للمعلومات ولها حالتان فقط (0 و 1)؟ [cite: 1030]";
+                    correctText = "بت (bit)";
+                    allOptions = [correctText, "بايت (Byte)", "البيانات الرقمية", "المعلومات التناظرية"];
+                } else { // Fallback question
+                    question = "ما هو العنصر الأساسي لأمن المعلومات الذي يعني أن المعلومات لم يتم تدميرها أو العبث بها؟";
+                    correctText = "السلامة (Integrity)";
+                    allOptions = [correctText, "السرية", "التوافرية"];
+                }
+                qwrap.querySelector('div').textContent = question; // تحديث نص السؤال
+
+                const options = shuffle([...new Set(allOptions)]).slice(0, 3); // خلط وأخذ 3 خيارات كحد أقصى
+
+                const list = document.createElement('div');
+                list.style.marginTop = '15px';
+                list.style.display = 'flex';
+                list.style.flexDirection = 'column';
+                list.style.gap = '10px';
+
+                let answered = false;
+                options.forEach((opt, idx) => {
+                    const b = document.createElement('div');
+                    b.className = 'quiz-option';
+                    b.innerHTML = `<span class="icon">${String.fromCharCode(0x0623 + idx)};</span> <span>${escapeHtml(opt)}</span>`;
+                    b.onclick = () => {
+                        if (answered) return;
+                        answered = true;
+
+                        if (opt.includes(correctText)) {
+                            b.classList.add('correct');
+                        } else {
+                            b.classList.add('wrong');
+                            // محاولة إظهار الإجابة الصحيحة
+                            document.querySelectorAll('.quiz-option').forEach(other => {
+                                if (other.textContent.includes(correctText)) {
+                                    other.classList.add('correct');
+                                }
+                            });
+                        }
+                    };
+                    list.appendChild(b);
+                });
+
+                qwrap.appendChild(list);
+                slideEl.appendChild(qwrap);
+            }
+        }
+
+        // helpers
+        function escapeHtml(s) { return (s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]); }
+        function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]] } return a }
+
+        function updateNavigationButtons() {
+            prevBtn.disabled = cur === 0;
+            nextBtn.disabled = cur === slides.length - 1;
+            if (cur === slides.length - 1) {
+                document.getElementById('play').textContent = 'إعادة البدء';
+            } else {
+                document.getElementById('play').textContent = playing ? 'إيقاف تلقائي' : 'تشغيل تلقائي';
+            }
+        }
+
+
+        // controls
+        prevBtn.onclick = () => {
+            stopPlay();
+            cur = (cur - 1 + slides.length) % slides.length;
+            render(cur);
+        }
+
+        nextBtn.onclick = () => {
+            stopPlay();
+            cur = (cur + 1) % slides.length;
+            render(cur);
+        }
+
+        document.getElementById('play').onclick = () => {
+            if (cur === slides.length - 1) {
+                // إعادة البدء عند الوصول للنهاية
+                cur = 0;
+                render(cur);
+                startPlay();
+            } else if (playing) {
+                stopPlay();
+            } else {
+                startPlay();
+            }
+        }
+
+        function startPlay() {
+            playing = true;
+            document.getElementById('play').textContent = 'إيقاف تلقائي';
+            playTimer = setInterval(() => {
+                if (cur === slides.length - 1) {
+                    stopPlay();
+                    document.getElementById('play').textContent = 'إعادة البدء';
+                } else {
+                    cur = (cur + 1) % slides.length;
+                    render(cur);
+                }
+            }, 5500); // 5.5 ثانية لكل شريحة
+        }
+
+        function stopPlay() {
+            playing = false;
+            document.getElementById('play').textContent = 'تشغيل تلقائي';
+            clearInterval(playTimer)
+        }
+
+        // modes
+        document.querySelectorAll('.mode').forEach(m => m.addEventListener('click', e => {
+            document.querySelectorAll('.mode').forEach(x => x.classList.remove('active'));
+            e.currentTarget.classList.add('active');
+            mode = e.currentTarget.dataset.mode;
+
+            let label = 'قراءة مركزة';
+            if (mode === 'activeRecall') label = 'تذكّر نشط';
+            if (mode === 'quiz') label = 'اختبار سريع';
+
+            document.querySelector('.progress-box .muted').innerHTML = `وضع: ${label}`;
+            render(cur);
+        }))
+
+        // reset
+        document.getElementById('resetApp').onclick = () => {
+            stopPlay();
+            cur = 0;
+            mode = 'read';
+            document.querySelectorAll('.mode').forEach(x => x.classList.remove('active'));
+            document.getElementById('modeRead').classList.add('active');
+            document.querySelector('.progress-box .muted').innerHTML = `وضع: قراءة مركزة`;
+            render(cur);
+        };
+
+
+        // init
+        render(cur);
+
+        // keyboard
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); nextBtn.click(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevBtn.click(); }
+            if (e.key === ' ') { e.preventDefault(); document.getElementById('play').click() }
+        });
+
+        // nice entrance for the page
+        window.addEventListener('load', () => { document.querySelector('.logo').classList.add('pulse') });
+    </script>
+</body>
+
+</html>
