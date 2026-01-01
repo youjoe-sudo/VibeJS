@@ -10,7 +10,8 @@
     "blog": "Blog",
     "about": "About",
     "contact": "Contact",
-    "credits": "Credits"
+    "credits": "Credits",
+    "school" : "Our School"
   },
   "modal": {
     "title": "Welcome to VibeJS!",
@@ -49,7 +50,7 @@
     "copyright": "© 2024 VibeJS. All rights reserved.",
     "powered": "Powered by JavaScript",
     "intro": "Introduction",
-    "school": "Banayous Secondary School"
+    "school2": "Banayous Secondary School"
   },
   "contact": {
     "title": "Contact Us",
